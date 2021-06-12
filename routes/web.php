@@ -21,5 +21,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',  [dokterController::class, 'index']);
 Route::get('dokter/export/', [dokterController::class, 'export']);
+Route::post('/dokter/import', [dokterController::class, 'import']);
 // Route::get('/guru/create', [dokterController::class, 'create']);
 Route::resource('dokter', dokterController::class);

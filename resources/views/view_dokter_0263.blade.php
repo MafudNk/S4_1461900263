@@ -17,19 +17,42 @@
     <div class="container">
         <div class="col-md-12">
             <div style="height: 15px;"></div>
-            <form action="/dokter/cari" method="GET">
-                <div class="row">
-                    <strong>Pencarian : </strong>
-                    <div style="width: 10px;"></div>
-                    <input type="text" name="nama" id="nama" placeholder="Masukkan Nama dokter" value="{{ old('nama') }}" class="input-group-text">
-                    <div style="width: 10px;"></div>
-                    <input type="submit" value="cari" class="btn btn-primary">
-                    <div style="width: 10px;"></div>
-                    <a href="/dokter/create" class="btn btn-primary">Tambah</a>
-                    <div style="width: 10px;"></div>
-                    <a href="/dokter/export/" class="btn btn-warning">Export Excel</a>
+            <div class="row">
+                <a href="/dokter/export/" class="btn btn-warning">Export Excel</a>
+                <div style="width: 10px;"></div>
+                <button type="button" class="btn btn-primary mr-5" data-toggle="modal" data-target="#importExcel">
+                    Import Excel
+                </button>
+            </div>
+
+
+            <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form method="post" action="/dokter/import" enctype="multipart/form-data">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Import Excel</h5>
+                            </div>
+                            <div class="modal-body">
+
+                                {{ csrf_field() }}
+
+                                <label>Pilih file excel</label>
+                                <div class="form-group">
+                                    <input type="file" name="file" required="required">
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Import</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
+
+
             <br>
             <table class="table">
                 <tr>
